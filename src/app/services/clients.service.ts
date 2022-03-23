@@ -14,7 +14,6 @@ export class ClientsService {
   }
 
   postClient(client: Client) {
-    console.log(client);
     return this.http.post(`${environment.apiUrl}/clientes`, client);
   }
 }

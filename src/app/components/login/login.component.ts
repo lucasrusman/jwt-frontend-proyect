@@ -20,6 +20,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent implements OnInit {
 
+  email:any
+  password:any
+
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
   public showPassword: boolean = false;
@@ -34,11 +37,14 @@ export class LoginComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  ingresar(user : User) {
-    this.userService.login(user).subscribe({
+  ingresar() {
+    const user = new User({
+      email:this.email,
+      password:this.password
+    });
+    this.userService.login(user)
 
-      this.router.navigateByUrl('/jwt/home') = response
-    })
+    this.router.navigateByUrl('/jwt/home')
   }
 
   registrarse(){

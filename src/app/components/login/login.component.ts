@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   constructor(private router: Router, private readonly userService : UsersService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userService.charge()
+  }
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
@@ -43,7 +45,6 @@ export class LoginComponent implements OnInit {
       pass:this.pass
     });
     this.userService.login(user)
-    this.router.navigateByUrl('/jwt/home');
 
   }
 

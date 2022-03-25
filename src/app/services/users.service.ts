@@ -16,18 +16,23 @@ export class UsersService implements OnDestroy {
     return this._authSub$.asObservable();
   }
 
-  constructor(private _router: Router, private readonly http: HttpClient) {}
+  constructor(private router: Router, private readonly http: HttpClient) {}
 
   public ngOnDestroy(): void {
     this._authSub$.next(false);
     this._authSub$.complete();
   }
 
+  charge(){
+    return this.http.get(`${environment.apiUrl}/`).subscribe(responseData => {
+      console.log(responseData);
+    })
+  }
 
   login(user: User) {
     console.log(user)
     return this.http.post(`${environment.apiUrl}/`, user).subscribe(responseData => {
-      console.log("hice el post")
+      this.router.navigateByUrl('/jwt/home')
     });
   }
 

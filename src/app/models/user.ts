@@ -1,9 +1,9 @@
 export class User {
   readonly email: string;
-  readonly password: string;
+  readonly pass: string;
 
-  constructor({ email, password }: { email: string; password: string }) {
+  constructor({ email, pass }: { email: string; pass: string }) {
     this.email = email;
-    this.password = password;
+    this.pass = pass;
   }
 }

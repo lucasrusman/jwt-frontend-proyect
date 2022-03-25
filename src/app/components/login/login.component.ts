@@ -21,7 +21,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class LoginComponent implements OnInit {
 
   email:any
-  password:any
+  pass:any
 
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
@@ -40,11 +40,9 @@ export class LoginComponent implements OnInit {
   ingresar() {
     const user = new User({
       email:this.email,
-      password:this.password
+      pass:this.pass
     });
     this.userService.login(user)
-
-    this.router.navigateByUrl('/jwt/home')
   }
 
   registrarse(){

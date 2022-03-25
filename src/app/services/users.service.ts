@@ -26,8 +26,15 @@ export class UsersService implements OnDestroy {
 
   login(user: User) {
     console.log(user)
-    return this.http.post(`${environment.apiUrl}/api/login`, user).subscribe(responseData => {
+    return this.http.post(`${environment.apiUrl}/`, user).subscribe(responseData => {
       console.log("hice el post")
-    });;
+    });
+  }
+
+  signup(user:User) {
+    console.log(user);
+    this.http.post(`${environment.apiUrl}/register`, user).subscribe(responseData => {
+      console.log("hice el registro")
+    });
   }
 }

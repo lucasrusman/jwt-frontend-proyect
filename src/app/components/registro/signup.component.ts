@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {AbstractControl, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { UsersService } from 'src/app/services/users.service';
+import { User } from 'src/app/models/user';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -24,9 +26,11 @@ export class SignupComponent implements ErrorStateMatcher {
 
   public showPassword: boolean = false;
 
+  email: any = '';
+  pass: any = '';
 
   matcher = new MyErrorStateMatcher();
-  constructor(private router: Router) {}
+  constructor(private router: Router, private readonly userService : UsersService) {}
   isErrorState(control: AbstractControl | null, form: FormGroupDirective | NgForm | null): boolean {
     throw new Error('Method not implemented.');
   }
@@ -42,10 +46,15 @@ export class SignupComponent implements ErrorStateMatcher {
   }
 
   registrarse(){
-    this.router.navigateByUrl('/signup')
+    const user = new User({
+      email:this.email,
+      pass:this.pass
+    });
+
+    this.userService.signup(user);
   }
   goToLogin(){
-    this.router.navigateByUrl('')
+    //this.router.navigateByUrl('')
   }
   enterEmail:any
 

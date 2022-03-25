@@ -41,10 +41,6 @@ export class SignupComponent implements ErrorStateMatcher {
     this.showPassword = !this.showPassword;
   }
 
-  ingresar() {
-    this.router.navigateByUrl('/jwt/home');
-  }
-
   registrarse(){
     const user = new User({
       email:this.email,
@@ -52,9 +48,7 @@ export class SignupComponent implements ErrorStateMatcher {
     });
 
     this.userService.signup(user);
-  }
-  goToLogin(){
-    //this.router.navigateByUrl('')
+    this.router.navigateByUrl('')
   }
   enterEmail:any
 

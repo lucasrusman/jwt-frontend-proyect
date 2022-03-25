@@ -43,6 +43,8 @@ export class LoginComponent implements OnInit {
       pass:this.pass
     });
     this.userService.login(user)
+    this.router.navigateByUrl('/jwt/home');
+
   }
 
   registrarse(){

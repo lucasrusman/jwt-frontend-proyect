@@ -1,25 +1,21 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ClientsComponent } from './components/clients/clients.component';
-import { CoreComponent } from './components/core/core.component';
-import { HomeComponentComponent } from './components/home-component/home-component.component';
-import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/registro/signup.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+
+import { LoginComponent } from "./auth/login/login.component";
+import { SignupComponent } from "./auth/signup/signup.component";
+import { AuthGuard } from "./auth/login/auth.guard";
+import { HomeComponent } from "./home/home.component";
+
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  {
-    path: 'jwt',
-    component: CoreComponent,
-    children: [
-      { path: 'home', component: HomeComponentComponent },
-      { path: 'clients', component: ClientsComponent }
-    ],
-  },
-  {path:'signup', component: SignupComponent}
+  { path: "home", component: HomeComponent,canActivate: [AuthGuard] },
+  { path: "", component: LoginComponent },
+  { path: "signup", component: SignupComponent },
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
